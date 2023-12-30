@@ -14,5 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('hasiera');
+});
+Route::get('/gehitu', function () {
+    return view('layouts.gehitu');
+});
+Route::post('/gehitu', function () {
+    return view('layouts.gehitu');
 });
