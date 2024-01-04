@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Erabiltzailea;
 use Illuminate\Http\Request;
 
 class userController extends Controller
@@ -62,7 +63,19 @@ class userController extends Controller
         //
     }
 
-    public function gehtiu(Request $request){
-        
-    }
+    public function gehitu(Request $request)
+{
+    $request->validate([
+        'izena' => 'required',
+        'abizena' => 'required',
+    ]);
+
+    $erabiltzailea = Erabiltzailea::create([
+        'izena' => $request->input('izena'),
+        'abizena' => $request->input('abizena'),
+    ]);
+
+    return redirect('/gehitu');
+}
+
 }

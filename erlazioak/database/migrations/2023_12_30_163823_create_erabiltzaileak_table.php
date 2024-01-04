@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('erabiltzaileak', function (Blueprint $table) {
             $table->id();
+            $table->string('izena');
+            $table->string('abizena');
             $table->timestamps();
         });
     }

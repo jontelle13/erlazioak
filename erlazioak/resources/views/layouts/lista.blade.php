@@ -1,13 +1,5 @@
 @extends('../hasiera')
-@section('gehitu')
-<div>
-    Erabiltzaile bat sortatu
-<form action="/gehitu" method="post">
-    @csrf
-    <input type="text" name="izena" placeholder="izena">
-    <input type="text" name="abizena" placeholder="abizena">
-    <input type="submit" value="gehitu">
-</form>
+@section('lista')
 <div class="container border mx-4 mt-4">
     <div class="bg-light d-flex border-bottom">
         <p>Erabiltzaileak</p>
@@ -39,5 +31,4 @@
         </div>
     </div>
 </div>
-</div>
-@endsection
+    @endsection

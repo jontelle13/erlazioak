@@ -16,10 +16,10 @@
                             <a   href="{{ '/'}}" >Home</a>
                         </li>
                         <li class="mr-4">
-                            <a  href="{{'/lista'}}">List Tasks</a>
+                            <a  href="{{'/listaBista'}}">Erabiltzaileak</a>
                         </li>
                         <li class="mr-4">
-                            <a  href="{{ '/gehitu'}}">New Task</a>
+                            <a  href="{{ '/gehituBista'}}">Erabiltzaile bat sortu</a>
                         </li>
                         <li class="mr-4">
                             <a  href="{{'/bilatuBotoi'}}">Search</a>

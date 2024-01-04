@@ -7,5 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Gaia extends Model
 {
+    protected $table='Gaiak';
+
     use HasFactory;
+
+    public function posts(){
+        return $this->belongsToMany(Post::class);
+    }
 }

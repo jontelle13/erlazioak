@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\userController;
+use App\Models\Erabiltzailea;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,9 +18,19 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('hasiera');
 });
-Route::get('/gehitu', function () {
-    return view('layouts.gehitu');
+
+Route::get('/gehituBista',function(){
+    $erabiltzaileak = Erabiltzailea::all();
+    
+    return view('layouts.gehitu',['erabiltzaileak'=>$erabiltzaileak]);
 });
-Route::post('/gehitu', function () {
-    return view('layouts.gehitu');
+Route::get('/listaBista',function(){
+    $erabiltzaileak = Erabiltzailea::all();
+        
+    return view('layouts.lista',['erabiltzaileak'=>$erabiltzaileak]);
 });
+ Route::get('/gehitu',[userController::class,'gehitu']);
+ Route::post('/gehitu',[userController::class,'gehitu']);
+
+ Route::get('/kendu/{id}',[userController::class,'kendu']);
+
