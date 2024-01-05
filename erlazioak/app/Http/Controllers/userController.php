@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Erabiltzailea;
+use App\Models\Helbidea;
 use Illuminate\Http\Request;
 
 class userController extends Controller
@@ -73,9 +74,49 @@ class userController extends Controller
     $erabiltzailea = Erabiltzailea::create([
         'izena' => $request->input('izena'),
         'abizena' => $request->input('abizena'),
+        'helbidea' => $request->input('helbidea'),
     ]);
 
     return redirect('/gehitu');
 }
 
+public function kendu($id){
+    $erabiltzailea= Erabiltzailea::find($id);
+    if($erabiltzailea){
+        $erabiltzailea->delete();
+    }
+
+    return redirect('/gehituBista');
+
+}
+
+public function editatu($id){
+    $erabiltzailea = Erabiltzailea::find($id);
+
+    return view('layouts.editatuBista', ['erabiltzailea' => $erabiltzailea]);
+}
+
+public function gehituHelbide(Request $request){
+    $helbide = Helbidea::create([
+        'helbidea' => $request->input('helbidea'),
+    ]);
+    return redirect('/gehituHelbideBista');
+}
+
+public function kenduHelbide($id){
+    $helbide= Helbidea::find($id);
+    if($helbide){
+        $helbide->delete();
+    }
+
+    return redirect('/gehituHelbideBista');
+}
+
+public function aukeratuErabiltzaile(Request $request){
+    
+    $erabiltzailea=Erabiltzailea::find($request->input('erabiltzaile'));
+    $helbideak=Helbidea::all();
+
+    return view('layouts.esleitu',['helbideak'=>$helbideak,'erabiltzailea'=>$erabiltzailea]);
+}
 }

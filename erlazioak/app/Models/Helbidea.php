@@ -10,6 +10,8 @@ class Helbidea extends Model
     use HasFactory;
     protected $table = 'helbideak';
 
+    protected $fillable= ['helbidea'];
+
     public function erabiltzailea()
     {
         return $this->belongsTo(Erabiltzailea::class);

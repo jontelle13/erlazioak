@@ -16,18 +16,21 @@
                             <a   href="{{ '/'}}" >Home</a>
                         </li>
                         <li class="mr-4">
-                            <a  href="{{'/listaBista'}}">Erabiltzaileak</a>
-                        </li>
-                        <li class="mr-4">
                             <a  href="{{ '/gehituBista'}}">Erabiltzaile bat sortu</a>
                         </li>
                         <li class="mr-4">
-                            <a  href="{{'/bilatuBotoi'}}">Search</a>
+                            <a  href="{{ '/gehituHelbideBista'}}">Helbide bat sortu</a>
+                        </li>
+                        <li class="mr-4">
+                            <a  href="{{ '/esleituHelbideaBista'}}">Esleitu helbidea</a>
                         </li>
                     </ul>
                 </div>
         </nav>
     </header>
     @yield('gehitu')
-    @yield('lista')
-    @yield('bilatzailea')
+    @yield('helbideGehitu')
+    @yield('editatu')
+    @yield('esleitu')
+    @yield('esleituHelbide')
+    

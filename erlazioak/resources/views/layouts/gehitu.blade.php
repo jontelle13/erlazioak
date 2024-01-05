@@ -6,6 +6,7 @@
     @csrf
     <input type="text" name="izena" placeholder="izena">
     <input type="text" name="abizena" placeholder="abizena">
+    <input type="text" name="helbidea" placeholder="helbidea">
     <input type="submit" value="gehitu">
 </form>
 <div class="container border mx-4 mt-4">
