@@ -59,3 +59,5 @@ Route::get('/esleituHelbideaBista',function(){
  Route::post('/kenduHelbide/{id}',[userController::class,'kenduHelbide']);
 
  Route::get('/aukeratuErabiltzaile',[userController::class,'aukeratuErabiltzaile']);
+
+ Route::get('/esleitu',[userController::class,'esleitu']);

@@ -119,4 +119,14 @@ public function aukeratuErabiltzaile(Request $request){
 
     return view('layouts.esleitu',['helbideak'=>$helbideak,'erabiltzailea'=>$erabiltzailea]);
 }
+
+public function esleitu(Request $request){
+    $helbideBerria=Helbidea::find($request->input('helbide'));
+    $erabiltzailea=Erabiltzailea::find($request->input('erabiltzaile'));
+
+    $erabiltzailea->helbidea=$helbideBerria->helbidea;
+    $erabiltzailea->save();
+    $helbideBerria->delete();
+    return view('hasiera');
+}
 }
