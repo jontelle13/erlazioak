@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\userController;
 use App\Models\Erabiltzailea;
+use App\Models\Post;
+use App\Models\Gaia;
+
 
 
 /*
@@ -68,3 +71,30 @@ Route::get('/kenduPost/{id}',[userController::class,'kenduPost']);
 Route::get('/editatuPost/{id}',[userController::class,'editatuPost']);
 
 Route::post('/editatuta',[userController::class,'editatuta']);
+
+Route::get('/gaiaBista',function(){
+    $gaiak=Gaia::all();
+    return view('layouts.gaiaSortu',['gaiak'=>$gaiak]);
+});
+
+Route::post('/gaiaSortu',[userController::class,'gaiaSortu']);
+
+Route::get('/kenduGaia/{id}',[userController::class,'kenduGaia']);
+
+Route::get('/editatuGaia/{id}',[userController::class,'editatuGaia']);
+
+Route::post('/editatutaGaia',[userController::class,'editatutaGaia']);
+
+Route::get('/api/posts/{id}', function ($id) {
+    $erabiltzailea = Erabiltzailea::find($id);
+    $postak = Post::where('erabiltzailea_id', $id)->get(); 
+
+    return view('api', ['erabiltzailea' => $erabiltzailea, 'postak' => $postak]);
+});
+
+Route::get('/azkenak', function () {
+    $azkenPosts = Post::orderBy('created_at', 'desc')->take(12)->get();
+
+    return view('azkenak', ['azkenPosts' => $azkenPosts]);
+});
+

@@ -2,16 +2,25 @@
 @section('postIgoBista')
 <div>
     {{ $erabiltzailea->izena }} igo post bat
-<div class="container border mx-4 mt-4">
-    <div class="container">
-    <form action="/postIgo" method="post">
-        @csrf
-        <input type="text" placeholder="Idatzi zure posta" name="post">
-        <input type="hidden"  name="erabiltzailea" value={{ $erabiltzailea->id }}>
-        <input type="submit" value="Igo">
-    </form>           
+    <div class="container border mx-4 mt-4">
+        <div class="container">
+            <form action="/postIgo" method="post">
+                @csrf
+                <input type="text" placeholder="Idatzi zure posta" name="post">
+                <input type="hidden" name="erabiltzailea" value={{ $erabiltzailea->id }}>
+    
+                <label for="temas">Aukeratu postaren gaiak:</label>
+                <select name="temak[]" multiple>
+                    @foreach($gaiak as $gaia)
+                        <option value="{{ $gaia->id }}">{{ $gaia->gaia }}</option>
+                    @endforeach
+                </select>
+    
+                <input type="submit" value="Igo">
+            </form>
+        </div>
     </div>
-</div>
+    
 <div id="postak">
     <label>Zure postak</label>
     <hr>

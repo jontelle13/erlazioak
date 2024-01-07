@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Erabiltzailea;
 use App\Models\Helbidea;
 use App\Models\Post;
+use App\Models\Gaia;
 use Illuminate\Http\Request;
 
 class userController extends Controller
@@ -151,8 +152,9 @@ public function aukeratuErabiltzaile(Request $request){
 public function postIgoBista(Request $request){
     $erabiltzailea=Erabiltzailea::find($request->input('erabiltzailea'));
     $postak=Post::all();
+    $gaiak=Gaia::all();
 
-    return view('layouts.postIgoBista',['erabiltzailea'=>$erabiltzailea,'postak'=>$postak]);
+    return view('layouts.postIgoBista',['erabiltzailea'=>$erabiltzailea,'postak'=>$postak,'gaiak'=>$gaiak]);
 }
 
 public function postIgo(Request $request){
@@ -160,6 +162,7 @@ public function postIgo(Request $request){
     $post = Post::create([
         'post' => $request->input('post'),
         'erabiltzailea_id' => $request->input('erabiltzailea')
+        
     ]);
 
     return redirect('/postBista');
@@ -183,5 +186,32 @@ public function editatuta(Request $request){
     $post->post=$request->input('post');
     $post->save();
     return redirect('/postBista');
+}
+
+public function gaiaSortu(Request $request){
+    $gaia=Gaia::create([
+        'gaia'=>$request->input('gaia')
+    ]);
+    return redirect('/gaiaBista');
+}
+public function kenduGaia($id){
+    $gaia=Gaia::find($id);
+    if($gaia){
+        $gaia->delete();
+    }
+    return redirect('/gaiaBista');
+}
+
+public function editatuGaia($id){
+    $gaia=Gaia::find($id);
+    
+    return view('layouts.gaiaEditatu',['gaia'=>$gaia]);
+}
+
+public function editatutaGaia(Request $request){
+    $gaia=Gaia::find($request->input('gaiaId'));
+    $gaia->gaia=$request->input('gaia');
+    $gaia->save();
+    return redirect('/gaiaBista');
 }
 }

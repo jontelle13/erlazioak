@@ -24,6 +24,9 @@
                         <li class="mr-4">
                             <a  href="{{ '/postBista'}}">Post bat igo</a>
                         </li>
+                        <li class="mr-4">
+                            <a  href="{{ '/gaiaBista'}}">Gai bat sortu</a>
+                        </li>
                     </ul>
                 </div>
         </nav>
@@ -34,5 +37,7 @@
     @yield('postBista')
     @yield('postIgoBista')
     @yield('helbideAukera')
+    @yield('gaiaSortu')
+
 
     

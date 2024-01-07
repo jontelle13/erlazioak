@@ -17,9 +17,9 @@ class Post extends Model
         return $this->belongsTo(Erabiltzailea::class);
     }
 
-    public function gaiak()
+    public function gaiak() 
     {
-        return $this->belongsToMany(Gaia::class);
+        return $this->belongsToMany(Gaia::class, 'post_gaia', 'post_id', 'gaia_id' );
     }
 }
 
