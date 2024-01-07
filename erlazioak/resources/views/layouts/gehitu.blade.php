@@ -6,7 +6,14 @@
     @csrf
     <input type="text" name="izena" placeholder="izena">
     <input type="text" name="abizena" placeholder="abizena">
-    <input type="text" name="helbidea" placeholder="helbidea">
+    <input type="text" name="adina" placeholder="adina">
+    <input type="email" name="email" placeholder="email">
+    <input type="date" name="jaiotze_data" placeholder="jaiotze-data">
+    <label>Aukeratu</label>
+    <select name="generoa" >
+        <option value="maskulinoa" >Gizona</option>
+        <option value="femeninoa" >Emakumea</option>
+    </select>
     <input type="submit" value="gehitu">
 </form>
 <div class="container border mx-4 mt-4">

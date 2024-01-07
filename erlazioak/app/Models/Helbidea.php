@@ -10,7 +10,7 @@ class Helbidea extends Model
     use HasFactory;
     protected $table = 'helbideak';
 
-    protected $fillable= ['helbidea'];
+    protected $fillable= ['helbidea','erabiltzailea_id'];
 
     public function erabiltzailea()
     {

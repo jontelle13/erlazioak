@@ -19,10 +19,7 @@
                             <a  href="{{ '/gehituBista'}}">Erabiltzaile bat sortu</a>
                         </li>
                         <li class="mr-4">
-                            <a  href="{{ '/gehituHelbideBista'}}">Helbide bat sortu</a>
-                        </li>
-                        <li class="mr-4">
-                            <a  href="{{ '/esleituHelbideaBista'}}">Esleitu helbidea</a>
+                            <a  href="{{ '/helbideAukera'}}">Helbide bat sortu</a>
                         </li>
                         <li class="mr-4">
                             <a  href="{{ '/postBista'}}">Post bat igo</a>
@@ -34,10 +31,8 @@
     @yield('gehitu')
     @yield('helbideGehitu')
     @yield('editatu')
-    @yield('esleitu')
-    @yield('esleituHelbide')
     @yield('postBista')
     @yield('postIgoBista')
-
+    @yield('helbideAukera')
 
     

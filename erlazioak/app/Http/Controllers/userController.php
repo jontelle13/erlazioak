@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Erabiltzailea;
 use App\Models\Helbidea;
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class userController extends Controller
@@ -74,7 +75,12 @@ class userController extends Controller
     $erabiltzailea = Erabiltzailea::create([
         'izena' => $request->input('izena'),
         'abizena' => $request->input('abizena'),
-        'helbidea' => $request->input('helbidea'),
+        'adina' => $request->input('adina'),
+        'email' => $request->input('email'),
+        'jaiotze_data' => $request->input('jaiotze_data'),
+        'generoa' => $request->input('generoa'),
+
+
     ]);
 
     return redirect('/gehitu');
@@ -96,12 +102,33 @@ public function editatu($id){
     return view('layouts.editatuBista', ['erabiltzailea' => $erabiltzailea]);
 }
 
+public function gehituHelbideBista(Request $request){
+    $erabiltzailea=Erabiltzailea::find($request->input('erabiltzailea'));
+    $helbideak = Helbidea::all();
+        
+    return view('layouts.helbideGehitu',['helbideak'=>$helbideak,'erabiltzailea'=>$erabiltzailea]);
+}
+
+public function helbideAukera(){
+    $erabiltzaileak=Erabiltzailea::all();
+    return view('layouts.helbideAukeratuBista',['erabiltzaileak'=>$erabiltzaileak]);
+}
+
 public function gehituHelbide(Request $request){
+    $existingHelbide = Helbidea::where('erabiltzailea_id', $request->input('erabiltzailea'))->first();
+
+    if ($existingHelbide) {
+        $existingHelbide->delete();
+    }
+
     $helbide = Helbidea::create([
         'helbidea' => $request->input('helbidea'),
+        'erabiltzailea_id' => $request->input('erabiltzailea')
     ]);
-    return redirect('/gehituHelbideBista');
+
+    return redirect('/helbideAukera');
 }
+
 
 public function kenduHelbide($id){
     $helbide= Helbidea::find($id);
@@ -109,7 +136,7 @@ public function kenduHelbide($id){
         $helbide->delete();
     }
 
-    return redirect('/gehituHelbideBista');
+    return redirect('/helbideAukera');
 }
 
 public function aukeratuErabiltzaile(Request $request){
@@ -120,24 +147,41 @@ public function aukeratuErabiltzaile(Request $request){
     return view('layouts.esleitu',['helbideak'=>$helbideak,'erabiltzailea'=>$erabiltzailea]);
 }
 
-public function esleitu(Request $request){
-    $helbideBerria=Helbidea::find($request->input('helbide'));
-    $erabiltzailea=Erabiltzailea::find($request->input('erabiltzaile'));
-
-    $erabiltzailea->helbidea=$helbideBerria->helbidea;
-    $erabiltzailea->save();
-    $helbideBerria->delete();
-    return view('hasiera');
-}
-
 
 public function postIgoBista(Request $request){
     $erabiltzailea=Erabiltzailea::find($request->input('erabiltzailea'));
+    $postak=Post::all();
 
-    return view('layouts.postIgoBista',['erabiltzailea'=>$erabiltzailea]);
+    return view('layouts.postIgoBista',['erabiltzailea'=>$erabiltzailea,'postak'=>$postak]);
 }
 
 public function postIgo(Request $request){
 
+    $post = Post::create([
+        'post' => $request->input('post'),
+        'erabiltzailea_id' => $request->input('erabiltzailea')
+    ]);
+
+    return redirect('/postBista');
+}
+
+public function kenduPost($id){
+    $post=Post::find($id);
+    if($post){
+        $post->delete();
+    }
+    return redirect('/postBista');
+}
+
+public function editatuPost($id){
+    $post=Post::find($id);
+    
+    return view('layouts.postEditatu',['post'=>$post]);
+}
+public function editatuta(Request $request){
+    $post=Post::find($request->input('postId'));
+    $post->post=$request->input('post');
+    $post->save();
+    return redirect('/postBista');
 }
 }

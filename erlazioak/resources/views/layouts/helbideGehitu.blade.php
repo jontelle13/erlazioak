@@ -1,16 +1,14 @@
 @extends('../hasiera')
 @section('helbideGehitu')
 <div>
-    Helbide bat sortu
+    Helbide bat sortu {{ $erabiltzailea->izena }}-rentzat
 <form action="/gehituHelbide" method="post">
     @csrf
     <input type="text" name="helbidea" placeholder="helbidea">
+    <input type="hidden" value={{ $erabiltzailea->id }} name="erabiltzailea">
     <input type="submit" value="gehitu">
 </form>
 <div class="container border mx-4 mt-4">
-    <div class="bg-light d-flex border-bottom">
-        <p>Erabiltzaileak</p>
-    </div>
     <div class="container">
         <hr>
         <div id="helbideak">
@@ -23,10 +21,6 @@
                                 <form action="/kenduHelbide/{{ $helbidea->id }}" method="post">
                                     @csrf
                                     <input type="submit" name="kendu" value="Ezabatu" class="btn btn-danger">
-                                </form>
-                                <form action="/editatuHelbide/{{ $helbidea->id }}" method="post">
-                                    @csrf
-                                    <input type="submit" name="editatu" value="Editatu" class="btn btn-info ml-2">
                                 </form>
                             </div>
                         </div>

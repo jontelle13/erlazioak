@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\userController;
 use App\Models\Erabiltzailea;
-use App\Models\Helbidea;
 
 
 /*
@@ -31,17 +30,8 @@ Route::get('/listaBista',function(){
     return view('layouts.lista',['erabiltzaileak'=>$erabiltzaileak]);
 });
 
-Route::get('/gehituHelbideBista',function(){
-    $helbideak = Helbidea::all();
-        
-    return view('layouts.helbideGehitu',['helbideak'=>$helbideak]);
-});
-Route::get('/esleituHelbideaBista',function(){
-    $erabiltzaileak = Erabiltzailea::all();
-    $helbideak = Helbidea::all();
-        
-    return view('layouts.esleituHelbidea',['helbideak'=>$helbideak,'erabiltzaileak'=>$erabiltzaileak]);
-});
+Route::get('/gehituHelbideBista',[userController::class,'gehituHelbideBista']);
+
 
 Route::get('/postBista',function(){
     $erabiltzaileak = Erabiltzailea::all();
@@ -59,7 +49,8 @@ Route::get('/postBista',function(){
  Route::get('/editatu/{id}',[userController::class,'editatu']);
  Route::post('/editatu/{id}',[userController::class,'editatu']);
 
- Route::get('/gehituHelbide',[userController::class,'gehituHelbide']);
+ Route::get('/helbideAukera',[userController::class,'helbideAukera']);
+
  Route::post('/gehituHelbide',[userController::class,'gehituHelbide']);
 
  Route::get('/kenduHelbide/{id}',[userController::class,'kenduHelbide']);
@@ -67,6 +58,13 @@ Route::get('/postBista',function(){
 
  Route::get('/aukeratuErabiltzaile',[userController::class,'aukeratuErabiltzaile']);
 
- Route::get('/esleitu',[userController::class,'esleitu']);
-
 Route::get('/postIgoBista',[userController::class,'postIgoBista']);
+
+Route::get('/postIgo',[userController::class,'postIgo']);
+Route::post('/postIgo',[userController::class,'postIgo']);
+
+Route::get('/kenduPost/{id}',[userController::class,'kenduPost']);
+
+Route::get('/editatuPost/{id}',[userController::class,'editatuPost']);
+
+Route::post('/editatuta',[userController::class,'editatuta']);

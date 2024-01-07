@@ -15,7 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('izena');
             $table->string('abizena');
-            $table->string('helbidea')->nullable(); 
+            $table->string('adina');
+            $table->string('email')->unique();
+            $table->date('jaiotze_data');
+            $table->enum('generoa', ['maskulinoa', 'femeninoa']);
             $table->timestamps();
         });
     }

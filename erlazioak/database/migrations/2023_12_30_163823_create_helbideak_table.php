@@ -12,8 +12,11 @@ return new class extends Migration
 {
     Schema::create('helbideak', function (Blueprint $table) {
         $table->id();
+        $table->foreignId('erabiltzailea_id')->constrained('erabiltzaileak');
         $table->string('helbidea');
         $table->timestamps();
+
+        $table->unique('erabiltzailea_id');
     });
 }
 
