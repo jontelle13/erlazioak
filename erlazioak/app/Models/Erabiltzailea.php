@@ -10,7 +10,7 @@ class Erabiltzailea extends Model
     use HasFactory;
 
     protected $table = 'erabiltzaileak';
-    protected $fillable = ['izena', 'abizena', 'helbidea'];
+    protected $fillable = ['izena', 'abizena', 'helbidea','postak'];
 
     public function helbidea()
     {

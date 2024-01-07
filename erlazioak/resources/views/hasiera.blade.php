@@ -24,6 +24,9 @@
                         <li class="mr-4">
                             <a  href="{{ '/esleituHelbideaBista'}}">Esleitu helbidea</a>
                         </li>
+                        <li class="mr-4">
+                            <a  href="{{ '/postBista'}}">Post bat igo</a>
+                        </li>
                     </ul>
                 </div>
         </nav>
@@ -33,4 +36,8 @@
     @yield('editatu')
     @yield('esleitu')
     @yield('esleituHelbide')
+    @yield('postBista')
+    @yield('postIgoBista')
+
+
     

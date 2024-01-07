@@ -129,4 +129,15 @@ public function esleitu(Request $request){
     $helbideBerria->delete();
     return view('hasiera');
 }
+
+
+public function postIgoBista(Request $request){
+    $erabiltzailea=Erabiltzailea::find($request->input('erabiltzailea'));
+
+    return view('layouts.postIgoBista',['erabiltzailea'=>$erabiltzailea]);
+}
+
+public function postIgo(Request $request){
+
+}
 }

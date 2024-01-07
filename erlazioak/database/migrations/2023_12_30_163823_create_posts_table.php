@@ -13,7 +13,10 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('erabiltzailea_id'); 
             $table->timestamps();
+
+            $table->foreign('erabiltzailea_id')->references('id')->on('erabiltzaileak')->onDelete('cascade');
         });
     }
 

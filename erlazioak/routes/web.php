@@ -43,6 +43,13 @@ Route::get('/esleituHelbideaBista',function(){
     return view('layouts.esleituHelbidea',['helbideak'=>$helbideak,'erabiltzaileak'=>$erabiltzaileak]);
 });
 
+Route::get('/postBista',function(){
+    $erabiltzaileak = Erabiltzailea::all();
+        
+    return view('layouts.postBista',['erabiltzaileak'=>$erabiltzaileak]);
+});
+
+
  Route::get('/gehitu',[userController::class,'gehitu']);
  Route::post('/gehitu',[userController::class,'gehitu']);
 
@@ -61,3 +68,5 @@ Route::get('/esleituHelbideaBista',function(){
  Route::get('/aukeratuErabiltzaile',[userController::class,'aukeratuErabiltzaile']);
 
  Route::get('/esleitu',[userController::class,'esleitu']);
+
+Route::get('/postIgoBista',[userController::class,'postIgoBista']);
